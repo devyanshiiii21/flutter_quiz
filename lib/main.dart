@@ -44,7 +44,7 @@ class MyAppState extends State<MyApp> {
       },
       {
         'questionText': 'What\'s my favourite food',
-        'answers': ['Pizza', 'Paani Puri', 'Adi\'s dick', 'Adi wle chawal']
+        'answers': ['Pizza', 'Paani Puri', 'Dal makhni', 'Adi wle chawal']
       },
     ];
     return MaterialApp(
