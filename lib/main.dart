@@ -1,7 +1,8 @@
-// ignore_for_file: unnecessary_new, avoid_print, prefer_const_constructors, deprecated_member_use, duplicate_ignore, sort_child_properties_last
+// ignore_for_file: unnecessary_new, avoid_print, prefer_const_constructors, deprecated_member_use, duplicate_ignore, sort_child_properties_last, unused_import
 
 import 'package:flutter/material.dart';
-
+import './question.dart';
+import './answer.dart';
 // void main() {
 //   runApp(MyHeheApp());
 // }
@@ -30,22 +31,22 @@ class MyAppState extends State<MyApp> {
     print(questionIndex);
   }
 
-  Widget generateList() {
-    List<String> list = itemList();
-    ListView myList = new ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (context, index) {
-        return new ListTile(
-          title: new Text(list[index]),
-        );
-      },
-    );
-    return myList;
-  }
-
   @override //decorator provider by dart
   Widget build(BuildContext context) {
-    var questions = ['Whats my favourite colour', 'Whats my fav food'];
+    var questions = [
+      {
+        'questionText': 'What\'s my favourite Destination',
+        'answers': ['Newyork', 'Switzerland', 'Greece', 'Udaipur']
+      },
+      {
+        'questionText': 'What\'s my favourite Cuisine',
+        'answers': ['Thai', 'Indian', 'Chinese', 'Italian']
+      },
+      {
+        'questionText': 'What\'s my favourite food',
+        'answers': ['Pizza', 'Paani Puri', 'Adi\'s dick', 'Adi wle chawal']
+      },
+    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -53,20 +54,16 @@ class MyAppState extends State<MyApp> {
         ),
         // ignore: prefer_const_literals_to_create_immutables
         body: Column(children: [
-          Text(
-            questions[questionIndex > 1 ? questionIndex = 0 : questionIndex],
+          Question(
+            questions[questionIndex > 2 ? questionIndex = 0 : questionIndex]
+                ['questionText'] as String,
           ),
-
-          // ignore: deprecated_member_use
-          RaisedButton(child: Text('Black'), onPressed: answerQuestion),
-          RaisedButton(child: Text('Blue'), onPressed: answerQuestion),
-          RaisedButton(child: Text('White'), onPressed: answerQuestion),
+          ...(questions[questionIndex]['answers'] as List<String>)
+              .map((answer) {
+            return Answer(answerQuestion, answer);
+          }).toList()
         ]),
       ),
     );
-  }
-
-  List<String> itemList() {
-    return ['Whats my favourite colour', 'Whats my fav food'];
   }
 }
