@@ -1,8 +1,6 @@
-# flutter_first_project
+# A new Flutter project.
 
-A new Flutter project.
-
-## Getting Started
+## Practice Quiz App
 
 This project is a starting point for a Flutter application.
 
