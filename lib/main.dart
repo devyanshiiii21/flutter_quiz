@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new, avoid_print, prefer_const_constructors, deprecated_member_use, duplicate_ignore, sort_child_properties_last, unused_import
+// ignore_for_file: unnecessary_new, avoid_print, prefer_const_constructors, deprecated_member_use, duplicate_ignore, sort_child_properties_last, unused_import, unused_local_variable
 
 import 'package:flutter/material.dart';
 import './quiz.dart';
@@ -24,21 +24,45 @@ class MyAppState extends State<MyApp> {
   final questions = const [
     {
       'questionText': 'What\'s my favourite Destination',
-      'answers': ['Newyork', 'Switzerland', 'Greece', 'Udaipur']
+      'answers': [
+        {'text': 'Newyork', 'score': '0'},
+        {'text': 'Switzerland', 'score': '0'},
+        {'text': 'Greece', 'score': '0'},
+        {'text': 'Udaipur', 'score': '100'},
+      ]
     },
     {
       'questionText': 'What\'s my favourite Cuisine',
-      'answers': ['Thai', 'Indian', 'Chinese', 'Italian']
+      'answers': [
+        {'text': 'Thai', 'score': '0'},
+        {'text': 'Italian', 'score': '0'},
+        {'text': 'Indian', 'score': '100'},
+        {'text': 'Chinese', 'score': '0'},
+      ]
     },
     {
       'questionText': 'What\'s my favourite food',
-      'answers': ['Pizza', 'Paani Puri', 'Dal makhni', 'Adi wle chawal']
+      'answers': [
+        {'text': 'Pizza', 'score': '0'},
+        {'text': 'Adi wale Chawal', 'score': '100'},
+        {'text': 'Paani puri', 'score': '0'},
+        {'text': 'Dal Makhni', 'score': '0'},
+      ]
     },
   ];
 
   var questionIndex = 0;
+  var totalScore = 0;
 
-  void answerQuestion() {
+  void resetQuiz() {
+    setState(() {
+      var questionIndex = 0;
+      var totalScore = 0;
+    });
+  }
+
+  void answerQuestion(int score) {
+    totalScore += score;
     setState(() {
       questionIndex = questionIndex + 1;
     });
@@ -62,7 +86,7 @@ class MyAppState extends State<MyApp> {
                   answerQuestion: answerQuestion,
                   questions: questions,
                   questionIndex: questionIndex)
-              : Result()),
+              : Result(totalScore)),
     );
   }
 }
