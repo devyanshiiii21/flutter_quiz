@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultscore;
-  final VoidCallback resetHandler;
 
-  Result(this.resultscore, this.resetHandler);
+  Result(this.resultscore);
 
   String get resultPhrase {
     String resultText;
@@ -31,10 +30,12 @@ class Result extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           // ignore: deprecated_member_use
-          FlatButton(
-            child: Text('Try Again'),
-            textColor: Colors.indigoAccent,
-            onPressed: resetHandler,
+          TextButton(
+            child: Text(
+              'Try Again',
+              style: TextStyle(color: Colors.indigo),
+            ),
+            onPressed: () {},
           )
         ],
       ),
