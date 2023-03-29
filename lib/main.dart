@@ -21,7 +21,11 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  final questions = const [
+  int score = 0;
+  int questionIndex = 0;
+  int totalScore = 0;
+
+  final questions = [
     {
       'questionText': 'What\'s my favourite Destination',
       'answers': [
@@ -51,17 +55,14 @@ class MyAppState extends State<MyApp> {
     },
   ];
 
-  var questionIndex = 0;
-  var totalScore = 0;
-
   void resetQuiz() {
     setState(() {
-      var questionIndex = 0;
-      var totalScore = 0;
+      questionIndex = 0;
+      totalScore = 0;
     });
   }
 
-  void answerQuestion(int score) {
+  void answerQuestion() {
     totalScore += score;
     setState(() {
       questionIndex = questionIndex + 1;
@@ -75,6 +76,7 @@ class MyAppState extends State<MyApp> {
 
   @override //decorator provider by dart
   Widget build(BuildContext context) {
+    VoidCallback selector;
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
